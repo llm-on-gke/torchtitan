@@ -15,7 +15,7 @@ spec:
     pytorch:
       - --master=master
       - --worker=worker
-      #- --port=3389  
+      - --port=3389  
   tasks:
     - replicas: 1
       name: master
@@ -107,8 +107,6 @@ spec:
                  value: /usr/local/nvidia/lib64
                - name: NCCL_FASTRAK_LLCM_DEVICE_DIRECTORY
                  value: /dev/aperture_devices
-               - name: NNODES
-                 value: "2"
               securityContext:
               volumeMounts:
                - name: aperture-devices
@@ -215,8 +213,6 @@ spec:
                  value: /usr/local/nvidia/lib64
                - name: NCCL_FASTRAK_LLCM_DEVICE_DIRECTORY
                  value: /dev/aperture_devices
-               - name: NNODES
-                 value: "2"
               securityContext:
               volumeMounts:
                - name: aperture-devices
