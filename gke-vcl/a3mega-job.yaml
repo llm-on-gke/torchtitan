@@ -15,7 +15,7 @@ spec:
     pytorch:
       - --master=master
       - --worker=worker
-      - --port=3389  
+      #- --port=3389  
   tasks:
     - replicas: 1
       name: master
