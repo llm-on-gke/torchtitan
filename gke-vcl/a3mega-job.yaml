@@ -90,7 +90,7 @@ spec:
              
           containers:
            
-            - image: us-east4-docker.pkg.dev/northam-ce-mlai-tpu/gke-llm/torchtitan:latest
+            - image: us-east1-docker.pkg.dev/northam-ce-mlai-tpu/gke-llm/torchtitan:latest
               name: master
               command:
               - bash
@@ -197,7 +197,7 @@ spec:
                 - name: LD_LIBRARY_PATH
                   value: /usr/local/nvidia/lib64
           containers:
-            - image: us-east4-docker.pkg.dev/northam-ce-mlai-tpu/gke-llm/torchtitan:latest
+            - image: us-east1-docker.pkg.dev/northam-ce-mlai-tpu/gke-llm/torchtitan:latest
               name: worker
               command:
               - bash
@@ -206,8 +206,8 @@ spec:
                 NCCL_LIB_DIR="/usr/local/nvidia/lib64"
                 export MASTER_ADDR=3389
                 source ${NCCL_LIB_DIR}/nccl-env-profile.sh
-                #sleep infinity
-                CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/debug_model.toml" ./run_train.sh  
+                sleep infinity
+                #CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/debug_model.toml" ./run_train.sh  
               env:
                - name: LD_LIBRARY_PATH
                  value: /usr/local/nvidia/lib64
