@@ -9,8 +9,7 @@ RUN git clone https://github.com/llm-on-gke/torchtitan
 WORKDIR torchtitan
 RUN pip install -r requirements.txt
 RUN pip install -e .
-#RUN pip install torchtitan
-RUN pip install tyro
+#RUN pip install tyro
 RUN python scripts/download_tokenizer.py --repo_id deepseek-ai/DeepSeek-V3 
 
 

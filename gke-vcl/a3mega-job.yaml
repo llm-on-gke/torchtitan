@@ -97,7 +97,6 @@ spec:
               - -xc
               - |
                 NCCL_LIB_DIR="/usr/local/nvidia/lib64"
-                export MASTER_ADDR=3389
                 source ${NCCL_LIB_DIR}/nccl-env-profile.sh
                 #sleep infinity
                 CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/deepseek_v3_16b.toml" ./run_train.sh
@@ -204,7 +203,6 @@ spec:
               - -xc
               - |
                 NCCL_LIB_DIR="/usr/local/nvidia/lib64"
-                export MASTER_ADDR=3389
                 source ${NCCL_LIB_DIR}/nccl-env-profile.sh
                 #sleep infinity
                 CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/deepseek_v3_16b.toml" ./run_train.sh  
