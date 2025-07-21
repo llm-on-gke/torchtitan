@@ -4,7 +4,7 @@
 # https://github.com/orgs/pytorch/packages/container/pytorch-nightly/versions
 ARG BASE_IMAGE=ghcr.io/pytorch/pytorch-nightly:2.9.0.dev20250720-cuda12.6-cudnn9-runtime
 FROM ${BASE_IMAGE}
-RUN apt-get -y update && apt-get -y install git
+RUN apt-get -y update && apt-get -y install git && apt-get install -y build-essential
 RUN git clone https://github.com/llm-on-gke/torchtitan
 WORKDIR torchtitan
 RUN pip install -r requirements.txt
