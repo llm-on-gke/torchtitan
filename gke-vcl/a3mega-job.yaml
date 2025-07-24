@@ -67,13 +67,6 @@ spec:
               image: us-docker.pkg.dev/gce-ai-infra/gpudirect-tcpxo/tcpgpudmarxd-dev:v1.0.17
               imagePullPolicy: IfNotPresent
               restartPolicy: Always
-              command: ["/bin/sh", "-c"]
-              args:
-                - |
-                  set -ex
-                  chmod 755 /fts/entrypoint_rxdm_container.sh
-                  /fts/entrypoint_rxdm_container.sh --num_hops=2 --num_nics=8 --uid= --alsologtostderr
-                  exit 0
               securityContext:
                 privileged: true
                 
@@ -98,6 +91,7 @@ spec:
               - |
                 NCCL_LIB_DIR="/usr/local/nvidia/lib64"
                 source ${NCCL_LIB_DIR}/nccl-env-profile.sh
+                NCCL_DEBUG=INFO
                 #sleep infinity
                 CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/deepseek_v3_16b.toml" ./run_train.sh
                 
@@ -110,8 +104,8 @@ spec:
                  value: "0"
               securityContext:
               volumeMounts:
-               - name: aperture-devices
-                 mountPath: /dev/aperture_devices
+               #- name: aperture-devices
+               #  mountPath: /dev/aperture_devices
                - name: libraries
                  mountPath: /usr/local/nvidia
                - mountPath: /dev/shm
@@ -178,13 +172,6 @@ spec:
               image: us-docker.pkg.dev/gce-ai-infra/gpudirect-tcpxo/tcpgpudmarxd-dev:v1.0.17
               imagePullPolicy: Always
               restartPolicy: Always
-              command: ["/bin/sh", "-c"]
-              args:
-                - |
-                  set -ex
-                  chmod 755 /fts/entrypoint_rxdm_container.sh
-                  /fts/entrypoint_rxdm_container.sh --num_hops=2 --num_nics=8 --uid= --alsologtostderr
-                  exit 0
               securityContext:
                 privileged: true   
               volumeMounts:
@@ -206,13 +193,14 @@ spec:
               - |
                 NCCL_LIB_DIR="/usr/local/nvidia/lib64"
                 source ${NCCL_LIB_DIR}/nccl-env-profile.sh
+                NCCL_DEBUG=INFO
                 #sleep infinity
                 CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/deepseek_v3_16b.toml" ./run_train.sh  
               env:
                - name: LD_LIBRARY_PATH
                  value: /usr/local/nvidia/lib64
-               - name: NCCL_FASTRAK_LLCM_DEVICE_DIRECTORY
-                 value: /dev/aperture_devices
+               #- name: NCCL_FASTRAK_LLCM_DEVICE_DIRECTORY
+               #  value: /dev/aperture_devices
                - name: PYTHONUNBUFFERED
                  value: "0"
               securityContext:
