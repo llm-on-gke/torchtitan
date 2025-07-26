@@ -38,7 +38,7 @@ lr_min = 2.2e-5
 
 [training]
 local_batch_size = 4 # does not works > 4 
-seq_len = 4096 #
+seq_len = 2048 #
 max_norm = 1.0  # grad norm clipping
 steps = 1000
 compile = false 
@@ -48,7 +48,7 @@ dataset = "c4"  # supported datasets: c4_test (2K), c4 (177M)
 data_parallel_replicate_degree = 1
 data_parallel_shard_degree = -1 #can not raise
 fsdp_reshard_after_forward = "never" # "default" # default / never / always
-tensor_parallel_degree = 1 # issue with 2
+tensor_parallel_degree = 8 # issue with 2
 enable_async_tensor_parallel = false #can not change
 expert_parallel_degree = 1
 pipeline_parallel_degree = 1
