@@ -46,10 +46,10 @@ dataset = "c4"  # supported datasets: c4_test (2K), c4 (177M)
 
 [parallelism]
 data_parallel_replicate_degree = 1
-data_parallel_shard_degree = 8 #-1
+data_parallel_shard_degree = -1 #can not raise
 fsdp_reshard_after_forward = "never" # "default" # default / never / always
 tensor_parallel_degree = 2 #1
-enable_async_tensor_parallel = false
+enable_async_tensor_parallel = false #can not change
 expert_parallel_degree = 1
 pipeline_parallel_degree = 1
 pipeline_parallel_schedule = "Interleaved1F1B"
