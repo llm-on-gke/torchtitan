@@ -90,6 +90,7 @@ spec:
                 NCCL_LIB_DIR="/usr/local/nvidia/lib64"
                 source ${NCCL_LIB_DIR}/nccl-env-profile.sh
                 #sleep infinity
+                PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
                 CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/deepseek_v3_16b.toml" ./run_train.sh
                 
               env:
@@ -99,6 +100,11 @@ spec:
                  value: /dev/aperture_devices
                - name: PYTHONUNBUFFERED
                  value: "0"
+               - name: HUGGING_FACE_HUB_TOKEN
+                 valueFrom:
+                  secretKeyRef:
+                     name: hf-secret
+                     key: hf_api_token
               securityContext:
               volumeMounts:
                - name: aperture-devices
@@ -192,6 +198,7 @@ spec:
                 NCCL_LIB_DIR="/usr/local/nvidia/lib64"
                 source ${NCCL_LIB_DIR}/nccl-env-profile.sh
                 #sleep infinity
+                PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
                 CONFIG_FILE="./torchtitan/models/deepseek_v3/train_configs/deepseek_v3_16b.toml" ./run_train.sh
                 
               env:
@@ -201,6 +208,11 @@ spec:
                  value: /dev/aperture_devices
                - name: PYTHONUNBUFFERED
                  value: "0"
+               - name: HUGGING_FACE_HUB_TOKEN
+                 valueFrom:
+                  secretKeyRef:
+                     name: hf-secret
+                     key: hf_api_token
               securityContext:
               volumeMounts:
                - name: aperture-devices
